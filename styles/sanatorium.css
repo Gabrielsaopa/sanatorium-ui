@@ -1,212 +1,295 @@
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=Creepster&display=swap');
+/* Importando fontes Góticas e Serifadas confortáveis para leitura longa */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap');
 
 :root {
-  --san-bg-dark: #090d0b;
-  --san-bg-panel: #111814;
-  --san-paper: #c8c2b0;
-  --san-paper-dark: #9e9784;
-  --san-blood: #6b1111;
-  --san-blood-bright: #9e1b1b;
-  --san-rust: #4a2c18;
-  --san-sick-green: #2b4536;
-  --san-text-light: #d0d5ce;
-  --san-text-dark: #1a1917;
+  /* Paleta: Cabana de Carvalho Escuro, Bronze Antigo, Geada e Abismo */
+  --oak-abyss: #0c0907;            /* Escuridão profunda da madeira */
+  --oak-dark: #16100c;             /* Carvalho escuro principal */
+  --oak-plank: #211812;            /* Tom secundário dos veios da madeira */
+  --oak-highlight: #2e2219;        /* Brilho sutil de verniz antigo */
+  
+  --brass-dark: #4a3a28;           /* Ferragem de bronze envelhecido */
+  --brass-gold: #8c6f4d;           /* Detalhes dourados/bronze fosco */
+  
+  --frost-ice: #8ab4c7;            /* Gelo e geada da tempestade lá fora */
+  --frost-glow: rgba(138, 180, 199, 0.25);
+  
+  --eldritch-tentacle: #080d11;    /* Cor abissal dos tentáculos */
+  --eldritch-crimson: #5e1919;     /* Carmesim gótico seco */
+  
+  --parchment-warm: #d8cebe;       /* Papel antigo aquecido (confortável para a vista) */
+  --parchment-dark: #bfb29e;       /* Bordas do pergaminho */
+  --ink-dark: #1f1a16;             /* Tinta sépia escura para leitura nítida */
+  --text-silver: #d4cfc7;          /* Texto claro sobre a madeira escura */
 
-  --font-primary: 'Courier Prime', monospace;
-  --font-h1: 'Special Elite', cursive;
-  --font-h2: 'Special Elite', cursive;
-  --color-border-highlight: var(--san-blood-bright);
-  --color-border-highlight-alt: var(--san-rust);
-  --color-shadow-primary: var(--san-blood);
-  --color-shadow-highlight: var(--san-blood-bright);
+  /* Fontes principais do Foundry V14 */
+  --font-primary: 'Crimson Pro', Georgia, serif;
+  --font-h1: 'Cinzel', serif;
+  --font-h2: 'Cinzel', serif;
+  --color-border-highlight: var(--frost-ice);
+  --color-border-highlight-alt: var(--brass-gold);
+  --color-shadow-primary: #000000;
+  --color-shadow-highlight: var(--frost-ice);
+
+  /* SVGs Embutidos: Tentáculos Lovecraftianos nos cantos */
+  --svg-tentacle-corner-br: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath fill='%23070a0d' opacity='0.55' d='M120,120 L120,45 C108,58 92,62 82,52 C72,42 85,22 68,15 C55,10 42,24 50,36 C56,45 45,58 32,54 C18,50 12,68 25,76 C38,84 28,98 12,96 C4,95 0,105 8,112 C20,120 45,105 62,120 Z'/%3E%3Cpath fill='%234a3a28' opacity='0.25' d='M120,120 L120,65 C105,75 95,70 88,60 C80,48 90,32 76,28 C66,25 58,36 64,45 C70,54 58,68 45,65 C34,62 28,75 38,82 C48,89 40,104 25,104 C15,104 12,115 24,120 Z'/%3E%3Ccircle cx='74' cy='38' r='2.5' fill='%238ab4c7' opacity='0.2'/%3E%3Ccircle cx='58' cy='58' r='3' fill='%238ab4c7' opacity='0.2'/%3E%3Ccircle cx='42' cy='78' r='3.5' fill='%238ab4c7' opacity='0.2'/%3E%3C/svg%3E");
+
+  --svg-tentacle-corner-tl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath fill='%23070a0d' opacity='0.65' d='M0,0 L0,75 C12,62 28,58 38,68 C48,78 35,98 52,105 C65,110 78,96 70,84 C64,75 75,62 88,66 C102,70 108,52 95,44 C82,36 92,22 108,24 C116,25 120,15 112,8 C100,0 75,15 58,0 Z'/%3E%3C/svg%3E");
 }
 
+/* =========================================================
+   PROTEÇÃO TOTAL DOS ÍCONES (Corrige os retângulos nas barras)
+   ========================================================= */
+.fa, .fas, .far, .fab, .fal, .fad,
+.fa-solid, .fa-regular, .fa-brands, .fa-light, .fa-duotone,
+i[class*="fa-"], button[class*="fa-"], a[class*="fa-"], span[class*="fa-"],
+.ui-control, .control-tool, #sidebar-tabs .item {
+  font-family: var(--font-awesome, "Font Awesome 6 Pro", "Font Awesome 6 Free", "FontAwesome") !important;
+}
+
+/* =========================================================
+   VINHETA DA TELA: TEMPESTADE DE GELO E TENTÁCULOS LÁ FORA
+   ========================================================= */
 body.sanatorium-theme::after {
   content: "";
   position: fixed;
   top: 0; left: 0; width: 100vw; height: 100vh;
   pointer-events: none;
   z-index: 9999;
-  background: 
-    radial-gradient(circle, transparent 55%, rgba(5, 8, 6, 0.85) 100%),
-    repeating-linear-gradient(0deg, rgba(0,0,0,0.08) 0px, rgba(0,0,0,0.08) 1px, transparent 1px, transparent 2px);
+  /* Tentáculos espreitando nas pontas + Geada azulada da nevasca nas bordas */
+  background-image: 
+    var(--svg-tentacle-corner-tl),
+    var(--svg-tentacle-corner-br),
+    radial-gradient(circle at 50% 50%, transparent 62%, rgba(138, 180, 199, 0.07) 84%, rgba(8, 14, 18, 0.78) 100%);
+  background-position: top left, bottom right, center;
+  background-repeat: no-repeat;
+  background-size: 220px 220px, 260px 260px, 100% 100%;
+  box-shadow: inset 0 0 60px rgba(10, 18, 24, 0.75), inset 0 0 18px rgba(138, 180, 199, 0.15);
 }
 
-@keyframes fluorescent-flicker {
-  0%, 100% { opacity: 1; }
-  92% { opacity: 1; }
-  93% { opacity: 0.7; }
-  94% { opacity: 0.95; }
-  96% { opacity: 0.5; }
-  97% { opacity: 1; }
+/* Respiração suave da nevasca (substitui o piscar forte por algo sutil e imersivo) */
+@keyframes blizzard-pulse {
+  0%, 100% { opacity: 0.92; }
+  50% { opacity: 1; }
 }
 
-body.sanatorium-flicker #ui-left,
-body.sanatorium-flicker #ui-right,
-body.sanatorium-flicker .application,
-body.sanatorium-flicker .window-app {
-  animation: fluorescent-flicker 12s infinite;
+body.sanatorium-flicker::after {
+  animation: blizzard-pulse 8s ease-in-out infinite;
 }
 
+/* =========================================================
+   JANELAS: CARVALHO ESCURO ENVELHECIDO E TENTÁCULOS NAS PONTAS
+   ========================================================= */
 .window-app, 
 .application {
-  background: var(--san-bg-panel) !important;
-  border: 2px solid var(--san-rust) !important;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.9), inset 0 0 15px rgba(107, 17, 17, 0.15) !important;
-  border-radius: 2px !important;
-  color: var(--san-text-light);
+  /* Textura de madeira de carvalho escuro em camadas */
+  background: 
+    var(--svg-tentacle-corner-br) no-repeat bottom right / 110px 110px,
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 2px, transparent 2px, transparent 14px),
+    linear-gradient(180deg, var(--oak-dark) 0%, var(--oak-abyss) 100%) !important;
+  border: 2px solid var(--brass-dark) !important;
+  outline: 1px solid #080605;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(0, 0, 0, 0.7) !important;
+  border-radius: 4px !important;
+  color: var(--text-silver);
   font-family: var(--font-primary);
 }
 
+/* Cabeçalho das janelas (Viga de Carvalho Escuro + Tentáculo no canto esquerdo) */
 .window-app .window-header,
 .application .window-header {
-  background: linear-gradient(90deg, #160707 0%, var(--san-bg-dark) 50%, #1c110a 100%) !important;
-  border-bottom: 2px solid var(--san-blood) !important;
-  font-family: 'Special Elite', cursive;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #c9b1b1 !important;
-  text-shadow: 1px 1px 2px #000;
+  background: 
+    var(--svg-tentacle-corner-tl) no-repeat top left / 55px 55px,
+    linear-gradient(90deg, #120c09 0%, var(--oak-plank) 50%, #120c09 100%) !important;
+  border-bottom: 2px solid var(--brass-dark) !important;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #dfd7ca !important;
+  text-shadow: 0 2px 4px #000;
 }
 
+.window-app .window-header .window-title,
+.application .window-header .window-title {
+  font-family: 'Cinzel', serif !important;
+}
+
+/* Conteúdo interno das janelas (Pergaminho aquecido + Tentáculo sutil no canto) */
 .window-app .window-content,
 .application .window-content {
   background: 
-    radial-gradient(circle at 90% 10%, rgba(107, 17, 17, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 10% 85%, rgba(74, 44, 24, 0.12) 0%, transparent 50%),
-    var(--san-paper) !important;
-  color: var(--san-text-dark) !important;
-  font-family: 'Courier Prime', monospace;
+    var(--svg-tentacle-corner-br) no-repeat bottom right / 140px 140px,
+    radial-gradient(circle at 50% 50%, var(--parchment-warm) 0%, var(--parchment-dark) 100%) !important;
+  color: var(--ink-dark) !important;
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  line-height: 1.45;
 }
 
+/* Títulos dentro dos diários e fichas */
 .window-content h1, 
 .window-content h2, 
 .window-content h3 {
-  font-family: 'Special Elite', cursive !important;
-  border-bottom: 1px dashed var(--san-blood) !important;
-  color: var(--san-blood) !important;
+  font-family: 'Cinzel', serif !important;
+  border-bottom: 1px solid var(--brass-dark) !important;
+  color: var(--eldritch-crimson) !important;
+  letter-spacing: 0.5px;
 }
 
+/* =========================================================
+   BARRA LATERAL DIREITA (TÁBUA DE CARVALHO + GEADA E TENTÁCULOS)
+   ========================================================= */
 #sidebar {
-  background: rgba(9, 13, 11, 0.95) !important;
-  border-left: 2px solid var(--san-rust) !important;
-  box-shadow: -5px 0 15px rgba(0,0,0,0.8) !important;
+  background: 
+    var(--svg-tentacle-corner-tl) no-repeat top left / 130px 130px,
+    var(--svg-tentacle-corner-br) no-repeat bottom right / 160px 160px,
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 9px),
+    linear-gradient(180deg, rgba(22, 16, 12, 0.97) 0%, rgba(12, 9, 7, 0.98) 100%) !important;
+  border-left: 2px solid var(--brass-dark) !important;
+  box-shadow: -6px 0 24px rgba(0, 0, 0, 0.9) !important;
 }
 
 #sidebar-tabs {
-  border-bottom: 2px solid var(--san-blood) !important;
+  border-bottom: 1px solid var(--brass-dark) !important;
+  background: rgba(12, 9, 7, 0.7) !important;
 }
 
-#sidebar-tabs > .item.active {
-  color: var(--san-blood-bright) !important;
-  border: 1px solid var(--san-blood) !important;
-  box-shadow: 0 0 8px var(--san-blood) inset !important;
+#sidebar-tabs > .item,
+#sidebar-tabs button {
+  color: #a89f93 !important;
+  transition: all 0.2s ease;
 }
 
+/* Aba ativa brilha como gelo batendo na fresta da madeira */
+#sidebar-tabs > .item.active,
+#sidebar-tabs button.active {
+  color: var(--frost-ice) !important;
+  border: 1px solid var(--frost-ice) !important;
+  box-shadow: 0 0 10px var(--frost-glow) inset !important;
+  text-shadow: 0 0 6px var(--frost-glow);
+}
+
+/* =========================================================
+   MENSAGENS DO CHAT (DIÁRIO DE CABANA COM TENTÁCULOS NO CANTO)
+   ========================================================= */
 .chat-message {
-  background: var(--san-paper) !important;
-  border: 1px solid #7a7362 !important;
-  border-left: 5px solid var(--san-sick-green) !important;
-  border-radius: 1px !important;
-  margin: 6px 4px !important;
-  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.6) !important;
-  font-family: 'Courier Prime', monospace !important;
-  color: var(--san-text-dark) !important;
+  background: 
+    var(--svg-tentacle-corner-br) no-repeat bottom right / 75px 75px,
+    linear-gradient(135deg, var(--parchment-warm) 0%, var(--parchment-dark) 100%) !important;
+  border: 1px solid #6e5f4c !important;
+  border-left: 4px solid var(--oak-plank) !important;
+  border-radius: 3px !important;
+  margin: 7px 5px !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.65) !important;
+  font-family: var(--font-primary) !important;
+  font-size: 1.02rem;
+  color: var(--ink-dark) !important;
   position: relative;
 }
 
+/* Sussurros / Mensagens Privadas (Toque Abissal e Geada) */
 .chat-message.whisper {
-  background: #bfb5b2 !important;
-  border-left: 5px solid var(--san-blood) !important;
-}
-
-.chat-message.whisper::before {
-  content: "CONFIDENCIAL";
-  position: absolute;
-  top: 4px; right: 8px;
-  font-family: 'Special Elite', cursive;
-  font-size: 0.65rem;
-  color: rgba(107, 17, 17, 0.5);
-  border: 1px solid rgba(107, 17, 17, 0.5);
-  padding: 1px 4px;
-  transform: rotate(-4deg);
-  pointer-events: none;
+  background: 
+    var(--svg-tentacle-corner-tl) no-repeat top right / 85px 85px,
+    linear-gradient(135deg, #c5ced4 0%, #9daab3 100%) !important;
+  border-left: 4px solid #2b4452 !important;
 }
 
 .chat-message .message-header {
-  color: #3b3831 !important;
-  border-bottom: 1px dotted #8c8573;
-  margin-bottom: 4px;
-  font-weight: bold;
+  font-family: 'Cinzel', serif !important;
+  font-size: 0.85rem;
+  color: #3d3126 !important;
+  border-bottom: 1px solid rgba(74, 58, 40, 0.35);
+  margin-bottom: 5px;
+  padding-bottom: 2px;
 }
 
+/* Rolagens de Dados no Chat */
 .dice-roll .dice-formula,
 .dice-roll .dice-total {
-  background: rgba(0, 0, 0, 0.08) !important;
-  border: 1px solid #7a7362 !important;
-  font-family: 'Special Elite', cursive !important;
-  border-radius: 0 !important;
+  background: rgba(22, 16, 12, 0.08) !important;
+  border: 1px solid rgba(74, 58, 40, 0.5) !important;
+  font-family: 'Cinzel', serif !important;
+  border-radius: 2px !important;
+  color: var(--ink-dark) !important;
 }
 
 .dice-roll .dice-total.critical {
-  color: var(--san-sick-green) !important;
-  background: rgba(43, 69, 54, 0.15) !important;
-}
-.dice-roll .dice-total.fumble {
-  color: var(--san-blood-bright) !important;
-  background: rgba(158, 27, 27, 0.2) !important;
-  text-shadow: 0 0 4px rgba(158, 27, 27, 0.4);
+  color: #1f4d36 !important;
+  background: rgba(43, 102, 72, 0.15) !important;
+  border-color: #2b6648 !important;
 }
 
-#chat-form textarea {
-  background: #141c17 !important;
-  border: 1px solid var(--san-sick-green) !important;
-  color: var(--san-paper) !important;
-  font-family: 'Courier Prime', monospace !important;
+.dice-roll .dice-total.fumble {
+  color: var(--eldritch-crimson) !important;
+  background: rgba(94, 25, 25, 0.18) !important;
+  border-color: var(--eldritch-crimson) !important;
 }
+
+/* Caixa de digitação do chat (Tábua escura entalhada) */
+#chat-form textarea {
+  background: var(--oak-dark) !important;
+  border: 1px solid var(--brass-dark) !important;
+  color: var(--text-silver) !important;
+  font-family: var(--font-primary) !important;
+  font-size: 1rem;
+  border-radius: 3px !important;
+}
+
 #chat-form textarea:focus {
   outline: none !important;
-  border-color: var(--san-blood-bright) !important;
-  box-shadow: 0 0 8px rgba(107, 17, 17, 0.6) !important;
+  border-color: var(--frost-ice) !important;
+  box-shadow: 0 0 10px var(--frost-glow) inset !important;
 }
 
+/* =========================================================
+   CONTROLES ESQUERDOS, HOTBAR E BOTÕES (MADEIRA E BRONZE)
+   ========================================================= */
 #controls ol.control-tools > li,
+#controls .ui-control,
 #hotbar .macro {
-  background: var(--san-bg-panel) !important;
-  border: 1px solid #2b3830 !important;
-  border-radius: 2px !important;
-  color: #9ba89f !important;
-  box-shadow: 0 0 5px #000 !important;
+  background: linear-gradient(180deg, var(--oak-plank) 0%, var(--oak-abyss) 100%) !important;
+  border: 1px solid var(--brass-dark) !important;
+  border-radius: 3px !important;
+  color: #bfb6a8 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.85) !important;
+  transition: all 0.15s ease;
 }
 
 #controls ol.control-tools > li.active,
 #controls ol.control-tools > li:hover,
+#controls .ui-control.active,
+#controls .ui-control:hover,
 #hotbar .macro:hover {
-  border-color: var(--san-blood-bright) !important;
-  color: #fff !important;
-  box-shadow: 0 0 10px var(--san-blood) inset !important;
+  border-color: var(--frost-ice) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px var(--frost-glow) inset, 0 0 8px rgba(0, 0, 0, 0.9) !important;
 }
 
-button, .window-content button {
-  background: var(--san-sick-green) !important;
-  border: 1px solid #16241c !important;
-  color: var(--san-paper) !important;
-  font-family: 'Special Elite', cursive !important;
-  border-radius: 1px !important;
+/* Botões de texto apenas (sem sobrescrever botões de ícones) */
+.window-content button:not([class*="fa-"]):not(.icon),
+.dialog-buttons button {
+  background: linear-gradient(180deg, var(--oak-highlight) 0%, var(--oak-dark) 100%) !important;
+  border: 1px solid var(--brass-gold) !important;
+  color: var(--text-silver) !important;
+  font-family: 'Cinzel', serif !important;
+  border-radius: 3px !important;
   transition: all 0.2s ease;
 }
 
-button:hover, .window-content button:hover {
-  background: var(--san-blood) !important;
-  border-color: var(--san-blood-bright) !important;
-  box-shadow: 0 0 8px rgba(107, 17, 17, 0.7) !important;
+.window-content button:not([class*="fa-"]):not(.icon):hover,
+.dialog-buttons button:hover {
+  background: linear-gradient(180deg, #24343d 0%, var(--oak-abyss) 100%) !important;
+  border-color: var(--frost-ice) !important;
+  box-shadow: 0 0 8px var(--frost-glow) !important;
   color: #fff !important;
 }
 
+/* Tela de Pausa */
 #pause figcaption {
-  font-family: 'Special Elite', cursive !important;
-  color: var(--san-blood-bright) !important;
+  font-family: 'Cinzel', serif !important;
+  color: var(--frost-ice) !important;
   text-transform: uppercase;
   letter-spacing: 3px;
-  text-shadow: 0 0 10px #000;
+  text-shadow: 0 0 12px #000, 0 0 6px var(--frost-glow);
 }
