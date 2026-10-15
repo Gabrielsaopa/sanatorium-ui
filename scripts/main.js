@@ -1,9 +1,9 @@
 Hooks.once("init", () => {
-  console.log("Sanatorium Horror UI | Inicializando atmosfera do sanatório...");
+  console.log("Sanatorium Horror UI | Inicializando atmosfera gótica de inverno cósmico...");
 
   game.settings.register("sanatorium-ui", "enableVignette", {
-    name: "Vinheta Claustrofóbica",
-    hint: "Adiciona bordas escuras e linhas sutis sobre a tela para criar sensação de opressão.",
+    name: "Geada e Tentáculos nos Cantos da Tela",
+    hint: "Adiciona o efeito de vidro congelado pela nevasca e silhuetas sutis de tentáculos nas bordas do monitor.",
     scope: "client",
     config: true,
     type: Boolean,
@@ -14,8 +14,8 @@ Hooks.once("init", () => {
   });
 
   game.settings.register("sanatorium-ui", "enableFlicker", {
-    name: "Luz Fluorescente Falhando",
-    hint: "Faz a interface piscar sutilmente de tempos em tempos, simulando lâmpadas de hospital com mau contato.",
+    name: "Pulsar da Tempestade de Gelo",
+    hint: "Faz a geada nas bordas da tela pulsar suavemente como o vento lá fora.",
     scope: "client",
     config: true,
     type: Boolean,
@@ -36,6 +36,6 @@ Hooks.once("ready", () => {
 
   const pauseText = document.querySelector("#pause figcaption");
   if (pauseText) {
-    pauseText.innerText = "SESSÃO TERAPÊUTICA EM PAUSA";
+    pauseText.innerText = "ALGO ESPREITA NA NEVASCA...";
   }
 });
